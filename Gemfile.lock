@@ -4,7 +4,9 @@ PATH
     monkey-king (0.1.0)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
+      oauth2 (~> 0.8.1)
       rails (~> 3.2.12)
+      twitter (~> 4.5.0)
 
 GEM
   remote: http://rubygems.org/

@@ -15,11 +15,11 @@ module MonkeyKing
 		end
 
 		def app_key provider
-			@@defaults[provider][:app_key]
+			(@@defaults[provider] || {})[:app_key]
 		end
 
 		def app_secret provider
-			@@defaults[provider][:app_secret]
+			(@@defaults[provider] || {})[:app_secret]
 		end
 
 	end

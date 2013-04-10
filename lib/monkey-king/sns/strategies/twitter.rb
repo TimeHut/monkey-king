@@ -29,7 +29,7 @@ module MonkeyKing
 
 					def real_user_info(params)
 						begin
-							normalize client.user :skip_status => true
+							normalize client.user(:skip_status => true)
 						rescue => e
 							handle_twitter_error e
 						end
