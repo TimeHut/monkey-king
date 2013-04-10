@@ -8,6 +8,8 @@ module MonkeyKing
 				API_URL  = 'https://api.weibo.com/2/'
 				BASE_URL = 'http://weibo.com'
 
+				def self.max_valid_age; 15.years end
+
 				def publish_status status
 					result = post 'statuses/update.json', :status => status
 					result['idstr']

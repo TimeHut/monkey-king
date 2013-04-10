@@ -5,9 +5,7 @@ module MonkeyKing
 			class Twitter
 				include MonkeyKing::SNS::Strategy
 
-				def self.need_token_secret?
-					true
-				end
+				def self.need_token_secret?; true end
 
 				def publish_status status
 					begin

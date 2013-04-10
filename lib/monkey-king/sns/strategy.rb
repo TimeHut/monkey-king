@@ -16,9 +16,8 @@ module MonkeyKing
 
 			module ClassMethods
 				
-				def need_token_secret?
-					false
-				end
+				def need_token_secret?; false end
+				def max_valid_age; 2.months end
 
 				def direct_copy from, keys=[]
 					to = {}
@@ -44,11 +43,13 @@ module MonkeyKing
 			def initialize credentials
 				credentials = (credentials || {}).with_indifferent_access
 
-				@token = credentials[:access_token]
-				@token_secret = credentials[:token_secret] if credentials[:token_secret]
+				@token = credentials[:access_token] || credentials[:token]
+				@token_secret = credentials[:token_secret] || credentials[:secret] if self.class.need_token_secret?
 
 				@expires_at = Time.at credentials[:expires_at].to_i
-				@expires_at = 2.months.from_now if @expires_at < Time.now || @expires_at > 2.months.from_now
+				if @expires_at < Time.now || @expires_at > self.class.max_valid_age.from_now
+					@expires_at = self.class.max_valid_age.from_now
+				end
 
 				if @token.blank? || (self.class.need_token_secret? && @token_secret.blank?)
 					raise InvalidTokenError
