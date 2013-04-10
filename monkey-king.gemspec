@@ -17,4 +17,8 @@ Gem::Specification.new do |s|
   s.test_files = Dir["test/**/*"]
 
   s.add_dependency "rails", "~> 3.2.12"
+  s.add_dependency 'faraday', ['~> 0.8', '< 0.10']
+  s.add_dependency 'multi_json', '~> 1.0'
+  s.add_dependency 'oauth2', '~> 0.8.1'
+  s.add_dependency 'twitter', '~> 4.5.0'
 end
