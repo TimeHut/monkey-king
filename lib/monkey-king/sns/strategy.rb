@@ -39,6 +39,8 @@ module MonkeyKing
 				end
 
 			end
+
+			attr_reader :token, :token_secret, :expires_at
 			
 			def initialize credentials
 				credentials = (credentials || {}).with_indifferent_access
@@ -54,6 +56,16 @@ module MonkeyKing
 				if @token.blank? || (self.class.need_token_secret? && @token_secret.blank?)
 					raise InvalidTokenError
 				end
+			end
+
+			def credentials_hash
+				credentials = {:token => @token}
+				credentials[:secret] = @token_secret if self.class.need_token_secret?
+				if self.class.max_valid_age < 50.years
+					credentials.merge! :expires_at => @expires_at.to_i, :expires => true
+				end
+
+				credentials
 			end
 
 			def uid

@@ -6,6 +6,7 @@ module MonkeyKing
 				include MonkeyKing::SNS::Strategy
 
 				def self.need_token_secret?; true end
+				def self.max_valid_age; 100.years end
 
 				def publish_status status
 					begin
