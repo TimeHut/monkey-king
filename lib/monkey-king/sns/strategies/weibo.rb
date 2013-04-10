@@ -20,12 +20,14 @@ module MonkeyKing
 					result['idstr']
 				end
 
+				def get_uid
+					get('account/get_uid.json')['uid']
+				end
+
 				protected
 
 					def real_user_info(params)
-						raise ArgumentError, ':id required' unless params[:id]
-
-						normalize get('users/show.json', :uid => params[:id])
+						normalize get('users/show.json', :uid => (params[:id] || get_uid))
 					end
 
 					def mock_user_info(params)
