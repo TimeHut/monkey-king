@@ -67,7 +67,7 @@ module MonkeyKing
 							raise NetworkError, e.message
 						elsif e.is_a?(OAuth2::Error) && e.response.parsed.is_a?(Hash)
 							code = e.response.parsed['error_code']
-							if code.in? [10006, 10013] || code.in?(21301..21502)
+							if code.in?([10006, 10013]) || code.in?(21301..21502)
 								raise InvalidTokenError, e.message
 							elsif code.in? [20016, 20017, 20019, 20038]
 								raise RepeatContentError, e.message
