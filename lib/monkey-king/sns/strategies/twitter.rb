@@ -55,8 +55,8 @@ module MonkeyKing
 
 					def client
 						::Twitter::Client.new(
-							:consumer_key => MonkeyKing.config.app_key(:app_key),
-							:consumer_secret => MonkeyKing.config.app_secret(:app_secret),
+							:consumer_key => MonkeyKing.config.app_key(:twitter),
+							:consumer_secret => MonkeyKing.config.app_secret(:twitter),
 							:oauth_token => @token,
 							:oauth_token_secret => @token_secret
 						)
