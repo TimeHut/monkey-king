@@ -54,7 +54,12 @@ module MonkeyKing
 					end
 
 					def client
-						::Twitter::Client.new :oauth_token => @token, :oauth_token_secret => @token_secret
+						::Twitter::Client.new(
+							:consumer_key => MonkeyKing.config.app_key(:app_key),
+							:consumer_secret => MonkeyKing.config.app_secret(:app_secret),
+							:oauth_token => @token,
+							:oauth_token_secret => @token_secret
+						)
 					end
 
 					def normalize user
