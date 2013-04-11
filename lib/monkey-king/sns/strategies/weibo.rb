@@ -24,6 +24,10 @@ module MonkeyKing
 					get('account/get_uid.json')['uid']
 				end
 
+				def check_permission permission=nil
+					get_uid and return true # 只要能获取当前用户id即拥有权限
+				end
+
 				protected
 
 					def real_user_info(params)

@@ -27,6 +27,11 @@ module MonkeyKing
 					get('me/permissions')['data'].first
 				end
 
+				def check_permission permission=nil
+					permissions.each { |k, v| return v == 1 if k.to_s == permission.to_s }
+					false
+				end
+
 				protected
 
 					def real_user_info(params)

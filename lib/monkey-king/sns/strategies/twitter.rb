@@ -24,11 +24,16 @@ module MonkeyKing
 					end
 				end
 
+				def check_permission permission=nil
+					client.verify_credentials :include_entities => false, :skip_status => true
+					true
+				end
+
 				protected
 
 					def real_user_info(params)
 						begin
-							normalize client.user(:skip_status => true)
+							normalize client.user(:include_entities => false, :skip_status => true)
 						rescue => e
 							handle_twitter_error e
 						end

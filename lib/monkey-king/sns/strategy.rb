@@ -94,6 +94,11 @@ module MonkeyKing
 				raise NotImplementedError
 			end
 
+			# 检测是否有指定权限，如果token无效，触发InvalidTokenError,否则返回true/false
+			def check_permission permission=nil
+				raise NotImplementedError
+			end
+
 			protected
 
 				def real_user_info(params); {} end
