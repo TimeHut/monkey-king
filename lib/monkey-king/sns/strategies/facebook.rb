@@ -7,6 +7,7 @@ module MonkeyKing
 
 				API_URL = 'https://graph.facebook.com'
 				DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,username,location,verified'
+				PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
 				def publish_note message, subject
 					post('me/notes', :message => message, :subject => subject)['id']
@@ -24,12 +25,16 @@ module MonkeyKing
 				end
 
 				def permissions
-					get('me/permissions')['data'].first
+					raw = get('me/permissions')['data'].first
+					(raw.collect {|k,v| k if v == 1}).compact
+				end
+
+				def publish_permissions
+					permissions.select {|item| item.in? PUBLISH_PERMISSIONS }
 				end
 
 				def check_permission permission=nil
-					permissions.each { |k, v| return v == 1 if k.to_s == permission.to_s }
-					false
+					permissions.include? permission.to_s
 				end
 
 				protected
