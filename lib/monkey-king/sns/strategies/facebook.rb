@@ -24,7 +24,7 @@ module MonkeyKing
 				end
 
 				def permissions
-					get('me/permissions')['data']
+					get('me/permissions')['data'].first
 				end
 
 				protected
