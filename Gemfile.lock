@@ -1,11 +1,11 @@
 PATH
   remote: .
   specs:
-    monkey-king (0.1.0)
+    monkey-king (0.1.2)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       oauth2 (~> 0.8.1)
-      rails (~> 3.2.12)
+      rails (~> 3.2.12, < 4.1.0)
       twitter (~> 4.5.0)
 
 GEM
@@ -57,7 +57,7 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mime-types (1.22)
+    mime-types (1.23)
     multi_json (1.7.2)
     multipart-post (1.2.0)
     oauth2 (0.8.1)
