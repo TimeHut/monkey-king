@@ -13,10 +13,13 @@ gem "jquery-rails"
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
+gem 'rails', '~> 3.2.13'
+
 gem 'faraday'
 gem 'multi_json'
 gem 'oauth2'
 gem 'twitter'
+gem 'chinese_pinyin', '~> 0.4.2'
 
 # To use debugger
 # gem 'debugger'

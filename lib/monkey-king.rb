@@ -1,6 +1,7 @@
 # encoding: utf-8
 require 'singleton'
 require 'monkey-king/core_ext/object'
+require 'monkey-king/utils'
 require 'monkey-king/sns/sns'
 
 module MonkeyKing
