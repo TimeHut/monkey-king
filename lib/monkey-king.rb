@@ -5,27 +5,27 @@ require 'monkey-king/utils'
 require 'monkey-king/sns/sns'
 
 module MonkeyKing
-	
-	class Configuration
-		include Singleton
+  
+  class Configuration
+    include Singleton
 
-		@@defaults = {}
+    @@defaults = {}
 
-		def provider name, app_key, app_secret
-			@@defaults[name.to_sym] = {:app_key => app_key, :app_secret => app_secret}
-		end
+    def provider name, app_key, app_secret
+      @@defaults[name.to_sym] = {:app_key => app_key, :app_secret => app_secret}
+    end
 
-		def app_key provider
-			(@@defaults[provider] || {})[:app_key]
-		end
+    def app_key provider
+      (@@defaults[provider] || {})[:app_key]
+    end
 
-		def app_secret provider
-			(@@defaults[provider] || {})[:app_secret]
-		end
+    def app_secret provider
+      (@@defaults[provider] || {})[:app_secret]
+    end
 
-	end
+  end
 
-	def self.config
+  def self.config
     Configuration.instance
   end
 
