@@ -39,7 +39,7 @@ module MonkeyKing
 
         def send_notification user_id, params
           access_token = "#{MonkeyKing.config.app_key(:facebook)}|#{MonkeyKing.config.app_secret(:facebook)}"
-          get("#{user_id}/notifications", params.merge(access_token: access_token))
+          post("#{user_id}/notifications", params.merge(access_token: access_token))['success']
         end
 
         protected

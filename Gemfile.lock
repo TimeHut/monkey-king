@@ -1,7 +1,8 @@
 PATH
   remote: .
   specs:
-    monkey-king (0.1.2)
+    monkey-king (0.2.0)
+      chinese_pinyin (~> 0.4.2)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       oauth2 (~> 0.8.1)
