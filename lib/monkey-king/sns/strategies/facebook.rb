@@ -37,6 +37,11 @@ module MonkeyKing
           permissions.include? permission.to_s
         end
 
+        def send_notification user_id, params
+          access_token = "#{MonkeyKing.config.app_key(:facebook)}|#{MonkeyKing.config.app_secret(:facebook)}"
+          get("#{user_id}/notifications", params.merge(access_token: access_token))
+        end
+
         protected
 
           def real_user_info(params)
@@ -70,7 +75,7 @@ module MonkeyKing
 
           def run_request conn, verb, path, params={}
             conn ||= Faraday.new(:url => API_URL)
-            params.merge!(:access_token => @token)
+            params.merge!(:access_token => (params[:access_token] || @token))
 
             begin
               rep = verb == :get ? conn.get(path, params) : conn.post(path, params)
