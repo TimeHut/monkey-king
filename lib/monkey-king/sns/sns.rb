@@ -25,5 +25,9 @@ module MonkeyKing
       provider_from_hash provider, token: 'faketoken', secret: 'fakesecret'
     end
 
+    def self.facebook_avatar uid
+      MonkeyKing::SNS::Strategies::Facebook.picture uid, width: 150, height: 150
+    end
+
   end
 end

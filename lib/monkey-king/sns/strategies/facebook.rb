@@ -9,6 +9,15 @@ module MonkeyKing
         DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,username,location,verified'
         PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
+        # :type => [:square, :small, :normal, :large]
+        # :width, :height
+        def self.picture uid, options={}
+          url = "http://graph.facebook.com/#{uid}/picture"
+          query = (options.collect {|k, v| "#{k}=#{v}" }).join('&')
+
+          query.present? ? "#{url}?#{query}" : url
+        end
+
         def publish_note message, subject
           post('me/notes', :message => message, :subject => subject)['id']
         end
