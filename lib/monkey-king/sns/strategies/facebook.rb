@@ -62,18 +62,18 @@ module MonkeyKing
           conn = Faraday.new(:url => API_URL)
           begin
             rep = conn.get '/oauth/access_token', params
-            rep.body.split('&').each do |pair|
-              key, value = pair.split('=')
-              if key == 'access_token'
-                @token = value
-              elsif key == 'expires'
-                @expires_at = Time.now.to_i + value.to_i
-              end
-            end
-
-            @token
           rescue => e
             handle_faraday_error e
+          end
+
+          matches = rep.body.match /access_token=([^&]+)&expires=(\d+)/
+          if matches && matches.length == 3
+            @token = matches[1]
+            @expires_at = Time.now.to_i + matches[2].to_i
+
+            @token
+          else
+            handle_faraday_response rep
           end
         end
 

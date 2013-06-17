@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    monkey-king (0.3.0)
+    monkey-king (0.3.1)
       chinese_pinyin (~> 0.4.2)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
