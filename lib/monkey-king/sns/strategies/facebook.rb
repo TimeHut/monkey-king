@@ -51,6 +51,32 @@ module MonkeyKing
           post("#{user_id}/notifications", params.merge(access_token: access_token))['success']
         end
 
+        def extend_token
+          params = {
+            grant_type: 'fb_exchange_token',
+            client_id: MonkeyKing.config.app_key(:facebook),
+            client_secret: MonkeyKing.config.app_secret(:facebook),
+            fb_exchange_token: @token
+          }
+
+          conn = Faraday.new(:url => API_URL)
+          begin
+            rep = conn.get '/oauth/access_token', params
+            rep.body.split('&').each do |pair|
+              key, value = pair.split('=')
+              if key == 'access_token'
+                @token = value
+              elsif key == 'expires'
+                @expires_at = Time.now.to_i + value.to_i
+              end
+            end
+
+            @token
+          rescue => e
+            handle_faraday_error e
+          end
+        end
+
         protected
 
           def real_user_info(params)

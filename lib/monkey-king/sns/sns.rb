@@ -29,5 +29,10 @@ module MonkeyKing
       MonkeyKing::SNS::Strategies::Facebook.picture uid, width: 150, height: 150
     end
 
+    def self.parse_signed_request provider, request
+      secret = MonkeyKing.config.app_secret provider
+      MonkeyKing::SNS::SignedRequestParser.new(secret).parse request
+    end
+
   end
 end
