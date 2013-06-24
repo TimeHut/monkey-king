@@ -69,7 +69,7 @@ module MonkeyKing
           matches = rep.body.match /access_token=([^&]+)&expires=(\d+)/
           if matches && matches.length == 3
             @token = matches[1]
-            @expires_at = Time.now.to_i + matches[2].to_i
+            @expires_at = Time.now + matches[2].to_i
 
             @token
           else
