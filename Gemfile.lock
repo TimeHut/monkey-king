@@ -1,8 +1,8 @@
 PATH
   remote: .
   specs:
-    monkey-king (0.3.2)
-      chinese_pinyin (~> 0.4.2)
+    monkey-king (0.3.3)
+      chinese_pinyin (>= 0.6.0)
       faraday (~> 0.8, < 0.10)
       multi_json (~> 1.0)
       oauth2 (~> 0.8.1)
@@ -40,7 +40,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     builder (3.0.4)
-    chinese_pinyin (0.4.2)
+    chinese_pinyin (0.6.0)
     erubis (2.7.0)
     faraday (0.8.6)
       multipart-post (~> 1.1)
@@ -114,7 +114,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chinese_pinyin (~> 0.4.2)
+  chinese_pinyin (>= 0.6.0)
   faraday
   jquery-rails
   monkey-king!

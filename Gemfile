@@ -19,7 +19,7 @@ gem 'faraday'
 gem 'multi_json'
 gem 'oauth2'
 gem 'twitter'
-gem 'chinese_pinyin', '~> 0.4.2'
+gem 'chinese_pinyin', '>= 0.6.0'
 
 # To use debugger
 # gem 'debugger'
