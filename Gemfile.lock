@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    monkey-king (0.3.3)
+    monkey-king (0.4.0)
       chinese_pinyin (>= 0.6.0)
       faraday (~> 0.8, < 0.10)
       multi_json (>= 1.0)
@@ -59,14 +59,12 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.25)
     multi_json (1.8.0)
-    multi_xml (0.5.5)
     multipart-post (1.2.0)
-    oauth2 (0.9.2)
+    oauth2 (0.8.1)
       faraday (~> 0.8)
-      httpauth (~> 0.2)
+      httpauth (~> 0.1)
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
-      multi_xml (~> 0.5)
       rack (~> 1.2)
     polyglot (0.3.3)
     rack (1.4.5)
@@ -115,11 +113,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  chinese_pinyin (>= 0.6.0)
-  faraday
   jquery-rails
   monkey-king!
-  multi_json
-  oauth2
-  rails (~> 3.2.13)
-  twitter
+  rails
