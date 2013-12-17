@@ -1,3 +1,5 @@
+require 'chinese_pinyin'
+
 module MonkeyKing
   class Utils
     def self.escape_domain(domain)

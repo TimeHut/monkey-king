@@ -1,4 +1,7 @@
 # encoding: utf-8
+require 'faraday'
+require 'oauth2'
+
 module MonkeyKing
   module SNS
     class CommonError < StandardError; end

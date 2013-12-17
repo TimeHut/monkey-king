@@ -19,6 +19,5 @@ Gem::Specification.new do |s|
   s.add_dependency 'faraday', ['~> 0.8', '< 0.10']
   s.add_dependency 'multi_json', '>= 1.0'
   s.add_dependency 'oauth2', '>= 0.5'
-  s.add_dependency 'twitter', '>= 4.8.1'
   s.add_dependency 'chinese_pinyin', '>= 0.6.0'
 end
