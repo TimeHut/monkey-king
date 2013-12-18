@@ -9,7 +9,7 @@ module MonkeyKing
   module SNS
   
     def self.provider_from_hash provider, credentials
-      credentials = JSON.parse credentials if credentials.is_a?(String)
+      credentials = MultiJson.load credentials if credentials.is_a?(String)
 
       klass_name = provider.to_s == 'qq_connect' ? 'QQConnect' : provider.to_s.capitalize
       klass = MonkeyKing::SNS::Strategies.const_get klass_name
