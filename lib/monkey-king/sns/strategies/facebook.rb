@@ -52,6 +52,8 @@ module MonkeyKing
         end
 
         def extend_token
+          return if MonkeyKing.config.test_mode
+          
           params = {
             grant_type: 'fb_exchange_token',
             client_id: MonkeyKing.config.app_key(:facebook),

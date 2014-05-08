@@ -23,6 +23,14 @@ module MonkeyKing
       (@@defaults[provider] || {})[:app_secret]
     end
 
+    def test_mode=(enabled)
+      @@defaults[:test_mode] = enabled
+    end
+
+    def test_mode
+      @@defaults[:test_mode] || false
+    end
+
   end
 
   def self.config

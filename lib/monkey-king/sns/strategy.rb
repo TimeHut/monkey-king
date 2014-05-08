@@ -83,7 +83,7 @@ module MonkeyKing
         options ||= {}
         @user_info = nil if options[:force_reload]
         unless @user_info
-          @user_info = options[:test_mode] ? mock_user_info(params) : real_user_info(params)
+          @user_info = MonkeyKing.config.test_mode ? mock_user_info(params) : real_user_info(params)
         end
 
         @user_info
