@@ -167,7 +167,7 @@ module MonkeyKing
               normalized[:nickname] = raw_info[:username]
               normalized[:urls] = {:Facebook => "http://www.facebook.com/#{raw_info[:username]}"}
             end
-            normalized[:image] = "http://graph.facebook.com/#{raw_info[:id]}/picture?type=square" if raw_info[:id]
+            normalized[:image] = "http://graph.facebook.com/#{raw_info[:id]}/picture?type=large" if raw_info[:id]
             normalized[:location] = raw_info[:location][:name] if raw_info[:location]
 
             # 搞定

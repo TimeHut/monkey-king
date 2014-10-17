@@ -110,13 +110,22 @@ module MonkeyKing
             # 特殊处理
             normalized[:id] = raw_info[:idstr]
             normalized[:nickname] = raw_info[:screen_name] if raw_info[:screen_name]
-            normalized[:image] = raw_info[:profile_image_url] if raw_info[:profile_image_url]
+            normalized[:gender] = normalize_gender raw_info
+            normalized[:image] = find_image raw_info
             normalized[:urls] = {
               'Blog' => raw_info[:url],
               'Weibo' => raw_info[:domain].present? ? "#{BASE_URL}/#{raw_info[:domain]}" : "#{BASE_URL}/u/#{raw_info[:id]}"
             }
 
             normalized
+          end
+
+          def normalize_gender raw_info
+            {'m' => 'male', 'f' => 'female', 'n' => 'unknown'}[raw_info[:gender]]
+          end
+
+          def find_image raw_info
+            raw_info[[:avatar_hd, :avatar_large, :profile_image_url].find { |e| raw_info[e].present? }]
           end
 
           def app_key
