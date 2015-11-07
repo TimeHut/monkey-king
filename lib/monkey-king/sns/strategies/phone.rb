@@ -1,3 +1,4 @@
+# encoding: utf-8
 module MonkeyKing
   module SNS
     module Strategies
@@ -10,7 +11,7 @@ module MonkeyKing
           def real_user_info(params)
             uid = [params[:phone_code], params[:phone]].join('_')
             {
-              :uid   => uid,
+              :id    => uid,
               :name  => uid,
               :image => nil
             }
