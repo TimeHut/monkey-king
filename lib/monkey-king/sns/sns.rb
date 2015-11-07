@@ -3,11 +3,12 @@ require 'monkey-king/sns/strategy'
 require 'monkey-king/sns/strategies/facebook'
 require 'monkey-king/sns/strategies/weibo'
 require 'monkey-king/sns/strategies/qq_connect'
+require 'monkey-king/sns/strategies/phone'
 require 'monkey-king/sns/signed_request_parser'
 
 module MonkeyKing
   module SNS
-  
+
     def self.provider_from_hash provider, credentials
       credentials = MultiJson.load credentials if credentials.is_a?(String)
 
