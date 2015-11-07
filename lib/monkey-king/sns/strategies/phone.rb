@@ -1,7 +1,7 @@
 module MonkeyKing
   module SNS
     module Strategies
-      class phone
+      class Phone
         include MonkeyKing::SNS::Strategy
 
         def self.max_valid_age; 100.years end
