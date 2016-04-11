@@ -7,18 +7,10 @@ module MonkeyKing
 
         def self.max_valid_age; 30.days end
 
-        def get_uid
-          get('https://api.weixin.qq.com/sns/userinfo')['openid']
-        end
-
-        def check_permission permission=nil
-          get_uid and return true # 只要能获取当前用户id即拥有权限
-        end
-
         protected
 
           def real_user_info(params)
-            normalize get('https://api.weixin.qq.com/sns/userinfo', :openid => (params[:id] || get_uid))
+            normalize get('https://api.weixin.qq.com/sns/userinfo', :openid => params[:id])
           end
 
           def mock_user_info(params)
