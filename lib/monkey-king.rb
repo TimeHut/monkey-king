@@ -11,16 +11,17 @@ module MonkeyKing
 
     @@defaults = {}
 
-    def provider name, app_key, app_secret
-      @@defaults[name.to_sym] = {:app_key => app_key, :app_secret => app_secret}
+    def provider provider, app_key, app_secret, app=:main
+      @@defaults[provider.to_sym] ||= {}
+      @@defaults[provider.to_sym][app.to_sym] = {:app_key => app_key, :app_secret => app_secret}
     end
 
-    def app_key provider
-      (@@defaults[provider] || {})[:app_key]
+    def app_key provider, app=:main
+      (@@defaults[provider.to_sym] || {})[app.to_sym].try :[], :app_key
     end
 
-    def app_secret provider
-      (@@defaults[provider] || {})[:app_secret]
+    def app_secret provider, app=:main
+      (@@defaults[provider.to_sym] || {})[app.to_sym].try :[], :app_secret
     end
 
     def test_mode=(enabled)

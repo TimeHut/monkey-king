@@ -129,11 +129,11 @@ module MonkeyKing
           end
 
           def app_key
-            MonkeyKing.config.app_key :weibo
+            MonkeyKing.config.app_key :weibo, @app
           end
 
           def app_secret
-            MonkeyKing.config.app_secret :weibo
+            MonkeyKing.config.app_secret :weibo, @app
           end
 
       end

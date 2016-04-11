@@ -43,11 +43,12 @@ module MonkeyKing
 
       end
 
-      attr_reader :token, :token_secret, :expires_at
+      attr_reader :app, :token, :token_secret, :expires_at
       
-      def initialize credentials
+      def initialize credentials, app=:main
         credentials = (credentials || {}).with_indifferent_access
 
+        @app   = app
         @token = credentials[:access_token] || credentials[:token]
         @token_secret = credentials[:token_secret] || credentials[:secret] if self.class.need_token_secret?
 

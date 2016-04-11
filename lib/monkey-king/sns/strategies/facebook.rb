@@ -47,7 +47,7 @@ module MonkeyKing
         end
 
         def send_notification user_id, params
-          access_token = "#{MonkeyKing.config.app_key(:facebook)}|#{MonkeyKing.config.app_secret(:facebook)}"
+          access_token = "#{app_key}|#{app_secret}"
           post("#{user_id}/notifications", params.merge(access_token: access_token))['success']
         end
 
@@ -56,8 +56,8 @@ module MonkeyKing
           
           params = {
             grant_type: 'fb_exchange_token',
-            client_id: MonkeyKing.config.app_key(:facebook),
-            client_secret: MonkeyKing.config.app_secret(:facebook),
+            client_id: app_key,
+            client_secret: app_secret,
             fb_exchange_token: @token
           }
 
@@ -168,6 +168,14 @@ module MonkeyKing
 
             # 搞定
             normalized
+          end
+
+          def app_key
+            MonkeyKing.config.app_key :facebook, @app
+          end
+
+          def app_secret
+            MonkeyKing.config.app_secret :facebook, @app
           end
 
       end

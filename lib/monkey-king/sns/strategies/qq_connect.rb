@@ -87,7 +87,7 @@ module MonkeyKing
           end
 
           def app_key
-            MonkeyKing.config.app_key :qq_connect
+            MonkeyKing.config.app_key :qq_connect, @app
           end
 
       end
