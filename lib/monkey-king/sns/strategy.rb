@@ -7,6 +7,7 @@ module MonkeyKing
     class CommonError < StandardError; end
 
     class NetworkError < CommonError; end
+    class InvalidCodeError < CommonError; end
     class InvalidTokenError < CommonError; end
     class RepeatContentError < CommonError; end
     class PermissionError < CommonError; end

@@ -10,7 +10,7 @@ module MonkeyKing
         protected
 
           def get_access_token_from_code
-            params = {app_id: app_key, secret: app_secret, code: @code, grant_type: 'authorization_code'}
+            params = {appid: app_key, secret: app_secret, code: @code, grant_type: 'authorization_code'}
             result = get 'https://api.weixin.qq.com/sns/oauth2/access_token', params
 
             @uid        = result['openid']
@@ -51,6 +51,8 @@ module MonkeyKing
 
               if ret.in? 42001..42003
                 raise InvalidTokenError, msg
+              elsif ret == 40029
+                raise InvalidCodeError, msg
               else
                 raise ApiRequestError, msg
               end
