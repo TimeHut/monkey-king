@@ -10,12 +10,12 @@ require 'monkey-king/sns/signed_request_parser'
 module MonkeyKing
   module SNS
 
-    def self.provider_from_hash provider, credentials
+    def self.provider_from_hash provider, credentials, uid=nil, app=:main
       credentials = MultiJson.load credentials if credentials.is_a?(String)
 
       klass_name = provider.to_s == 'qq_connect' ? 'QQConnect' : provider.to_s.capitalize
       klass = MonkeyKing::SNS::Strategies.const_get klass_name
-      klass.new credentials
+      klass.new credentials, uid, app
     end
 
     def self.provider_with_random_token provider
