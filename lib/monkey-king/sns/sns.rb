@@ -4,6 +4,7 @@ require 'monkey-king/sns/strategies/facebook'
 require 'monkey-king/sns/strategies/weibo'
 require 'monkey-king/sns/strategies/qq_connect'
 require 'monkey-king/sns/strategies/phone'
+require 'monkey-king/sns/strategies/wechat'
 require 'monkey-king/sns/signed_request_parser'
 
 module MonkeyKing
