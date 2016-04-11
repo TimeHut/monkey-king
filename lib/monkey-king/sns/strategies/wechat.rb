@@ -9,8 +9,17 @@ module MonkeyKing
 
         protected
 
+          def get_access_token_from_code
+            params = {app_id: app_key, secret: app_secret, code: @code, grant_type: 'authorization_code'}
+            result = get 'https://api.weixin.qq.com/sns/oauth2/access_token', params
+
+            @uid        = result['openid']
+            @token      = result['access_token']
+            @expires_at = result['expires_in'].to_i.seconds.from_now
+          end
+
           def real_user_info(params)
-            normalize get('https://api.weixin.qq.com/sns/userinfo', :openid => params[:id])
+            normalize get('https://api.weixin.qq.com/sns/userinfo', :openid => (params[:id] || @uid))
           end
 
           def mock_user_info(params)
@@ -29,8 +38,6 @@ module MonkeyKing
             end
           end
 
-          # callback( {"client_id":"YOUR_APPID","openid":"YOUR_OPENID"} );
-          # callback( {"error":100016,"error_description":"access token check failed"} );
           def handle_faraday_response rep
             begin
               parsed = MultiJson.load rep.body
@@ -70,6 +77,14 @@ module MonkeyKing
               :name     => raw_info[:nickname],
               :image    => raw_info[:headimgurl]
             }
+          end
+
+          def app_key
+            MonkeyKing.config.app_key :wechat, @app
+          end
+
+          def app_secret
+            MonkeyKing.config.app_secret :wechat, @app
           end
 
       end

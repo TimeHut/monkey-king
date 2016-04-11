@@ -21,7 +21,7 @@ module MonkeyKing
         protected
 
           def real_user_info(params)
-            normalize get('users/show.json', :uid => (params[:id] || get_uid))
+            normalize get('users/show.json', :uid => (params[:id] || @uid || get_uid))
           end
 
           def mock_user_info(params)

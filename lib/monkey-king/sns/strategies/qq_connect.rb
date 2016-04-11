@@ -18,7 +18,7 @@ module MonkeyKing
         protected
 
           def real_user_info(params)
-            uid = params[:id] || get_uid
+            uid = params[:id] || @uid || get_uid
             params = {oauth_consumer_key: app_key, openid: uid}
 
             normalize get('https://graph.qq.com/user/get_user_info', params).merge(id: uid)

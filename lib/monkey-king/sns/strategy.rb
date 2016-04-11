@@ -43,12 +43,13 @@ module MonkeyKing
 
       end
 
-      attr_reader :app, :token, :token_secret, :expires_at
+      attr_reader :app, :code, :token, :token_secret, :expires_at, :uid
       
-      def initialize credentials, app=:main
+      def initialize credentials, uid=nil, app=:main
         credentials = (credentials || {}).with_indifferent_access
 
         @app   = app
+        @code  = credentials[:code]
         @token = credentials[:access_token] || credentials[:token]
         @token_secret = credentials[:token_secret] || credentials[:secret] if self.class.need_token_secret?
 
@@ -57,8 +58,14 @@ module MonkeyKing
           @expires_at = self.class.max_valid_age.from_now
         end
 
+        @uid = uid
+
         if @token.blank? || (self.class.need_token_secret? && @token_secret.blank?)
-          raise InvalidTokenError
+          if @code
+            get_access_token_from_code
+          else
+            raise InvalidTokenError
+          end
         end
       end
 
@@ -73,7 +80,7 @@ module MonkeyKing
       end
 
       def uid
-        user_info[:id]
+        @uid || user_info[:id]
       end
 
       # 取用户信息，默认在有缓存时读取缓存的内容
@@ -90,17 +97,13 @@ module MonkeyKing
         @user_info
       end
 
-      def publish_status status
-        raise NotImplementedError
-      end
-
-      def publish_photo status, picture_path
-        raise NotImplementedError
-      end
-
       # 检测是否有指定权限，如果token无效，触发InvalidTokenError,否则返回true/false
       def check_permission permission=nil
         raise NotImplementedError
+      end
+
+      def get_access_token_from_code
+        raise InvalidTokenError
       end
 
       protected
