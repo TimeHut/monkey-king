@@ -5,12 +5,10 @@ module MonkeyKing
       class Wechat
         include MonkeyKing::SNS::Strategy
 
-        API_URL  = 'https://api.weixin.qq.com/'
-
         def self.max_valid_age; 30.days end
 
         def get_uid
-          get('sns/userinfo')['openid']
+          get('https://api.weixin.qq.com/sns/userinfo')['openid']
         end
 
         def check_permission permission=nil
@@ -20,7 +18,7 @@ module MonkeyKing
         protected
 
           def real_user_info(params)
-            normalize get('sns/userinfo', :openid => (params[:id] || get_uid))
+            normalize get('https://api.weixin.qq.com/sns/userinfo', :openid => (params[:id] || get_uid))
           end
 
           def mock_user_info(params)
