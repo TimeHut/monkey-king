@@ -18,21 +18,6 @@ module MonkeyKing
           query.present? ? "#{url}?#{query}" : url
         end
 
-        def publish_note message, subject
-          post('me/notes', :message => message, :subject => subject)['id']
-        end
-
-        def publish_photo status, picture_path
-          upload('me/photos', :source, picture_path, :message => status)['id']
-        end
-
-        def publish_link link, message=nil
-          params = {:link => link}
-          params[:message] = message if message
-
-          post('me/links', params)['id']
-        end
-
         def permissions
           raw = get('me/permissions')['data'].first
           (raw.collect {|k,v| k if v == 1}).compact
@@ -44,11 +29,6 @@ module MonkeyKing
 
         def check_permission permission=nil
           permissions.include? permission.to_s
-        end
-
-        def send_notification user_id, params
-          access_token = "#{app_key}|#{app_secret}"
-          post("#{user_id}/notifications", params.merge(access_token: access_token))['success']
         end
 
         def extend_token

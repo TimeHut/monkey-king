@@ -10,16 +10,6 @@ module MonkeyKing
 
         def self.max_valid_age; 15.years end
 
-        def publish_status status
-          result = post 'statuses/update.json', :status => status
-          result['idstr']
-        end
-
-        def publish_photo status, picture_path
-          result = upload 'statuses/upload.json', :pic, picture_path, :status => status
-          result['idstr']
-        end
-
         def get_uid
           get('account/get_uid.json')['uid']
         end
