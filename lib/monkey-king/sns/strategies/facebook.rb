@@ -6,7 +6,7 @@ module MonkeyKing
         include MonkeyKing::SNS::Strategy
 
         API_URL = 'https://graph.facebook.com/v2.0/'
-        DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,location,verified'
+        DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,location,verified,token_for_business'
         PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
         # :type => [:square, :small, :normal, :large]
@@ -145,6 +145,7 @@ module MonkeyKing
             # 特殊处理
             normalized[:image] = "http://graph.facebook.com/#{raw_info[:id]}/picture?type=large" if raw_info[:id]
             normalized[:location] = raw_info[:location][:name] if raw_info[:location]
+            normalized[:union_id] = raw_info[:token_for_business]
 
             # 搞定
             normalized
