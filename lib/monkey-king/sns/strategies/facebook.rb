@@ -5,14 +5,14 @@ module MonkeyKing
       class Facebook
         include MonkeyKing::SNS::Strategy
 
-        API_URL = 'https://graph.facebook.com/v2.0/'
+        API_URL = 'https://graph.facebook.com/v2.8/'
         DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,location,verified,token_for_business'
         PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
         # :type => [:square, :small, :normal, :large]
         # :width, :height
         def self.picture uid, options={}
-          url = "http://graph.facebook.com/#{uid}/picture"
+          url = "https://graph.facebook.com/v2.8/#{uid}/picture"
           query = (options.collect {|k, v| "#{k}=#{v}" }).join('&')
 
           query.present? ? "#{url}?#{query}" : url
@@ -143,7 +143,7 @@ module MonkeyKing
             normalized = Facebook.direct_copy raw_info, [:id, :email, :name, :first_name, :last_name, :verified]
 
             # 特殊处理
-            normalized[:image] = "http://graph.facebook.com/#{raw_info[:id]}/picture?type=large" if raw_info[:id]
+            normalized[:image] = "https://graph.facebook.com/v2.8/#{raw_info[:id]}/picture?type=large" if raw_info[:id]
             normalized[:location] = raw_info[:location][:name] if raw_info[:location]
             normalized[:union_id] = raw_info[:token_for_business]
 
