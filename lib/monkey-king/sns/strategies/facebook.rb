@@ -18,6 +18,14 @@ module MonkeyKing
           query.present? ? "#{url}?#{query}" : url
         end
 
+        def self.friends uid, options={}
+          url = "https://graph.facebook.com/v2.8/#{uid}/friends"
+          options[:access_token] = extend_token
+          query = (options.collect {|k, v| "#{k}=#{v}" }).join('&')
+
+          query.present? ? "#{url}?#{query}" : url
+        end
+
         def permissions
           raw = get('me/permissions')['data'].first
           (raw.collect {|k,v| k if v == 1}).compact
