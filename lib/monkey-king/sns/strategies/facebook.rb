@@ -20,10 +20,14 @@ module MonkeyKing
 
         def self.friends uid, options={}
           url = "https://graph.facebook.com/v2.8/#{uid}/friends"
-          options[:access_token] = extend_token
+          options{:access_token} = extend_token
           query = (options.collect {|k, v| "#{k}=#{v}" }).join('&')
 
           query.present? ? "#{url}?#{query}" : url
+        end
+
+        def self.extend_token
+          new.extend_token
         end
 
         def permissions
