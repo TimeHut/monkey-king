@@ -77,7 +77,11 @@ module MonkeyKing
               :union_id => raw_info[:unionid],
               :nickname => raw_info[:nickname],
               :name     => raw_info[:nickname],
-              :image    => raw_info[:headimgurl]
+              :image    => raw_info[:headimgurl],
+              :sex      => raw_info[:sex],
+              :city     => raw_info[:city],
+              :province => raw_info[:province],
+              :country  => raw_info[:country]
             }
           end
 
