@@ -1,4 +1,4 @@
-source "http://rubygems.org"
+source "http://gems.ruby-china.org"
 
 # Declare your gem's dependencies in monkey-king.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
