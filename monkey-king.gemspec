@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency 'faraday', ['~> 0.8', '< 0.10']
+  s.add_dependency 'faraday'
   s.add_dependency 'multi_json', '>= 1.0'
   s.add_dependency 'oauth2', '>= 0.5'
   s.add_dependency 'chinese_pinyin', '>= 0.6.0'
