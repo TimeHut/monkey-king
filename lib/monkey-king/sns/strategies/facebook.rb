@@ -5,21 +5,21 @@ module MonkeyKing
       class Facebook
         include MonkeyKing::SNS::Strategy
 
-        API_URL = 'https://graph.facebook.com/v2.8/'
+        API_URL = 'https://graph.facebook.com/v4.0/'
         DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,location,verified,token_for_business'
         PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
         # :type => [:square, :small, :normal, :large]
         # :width, :height
         def self.picture uid, options={}
-          url = "https://graph.facebook.com/v2.8/#{uid}/picture"
+          url = "https://graph.facebook.com/v4.0/#{uid}/picture"
           query = (options.collect {|k, v| "#{k}=#{v}" }).join('&')
 
           query.present? ? "#{url}?#{query}" : url
         end
 
         def self.friends uid, options={}
-          url = "https://graph.facebook.com/v2.8/#{uid}/friends"
+          url = "https://graph.facebook.com/v4.0/#{uid}/friends"
           options[:access_token] = extend_token
           query = (options.collect {|k, v| "#{k}=#{v}" }).join('&')
 
