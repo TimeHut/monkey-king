@@ -6,7 +6,7 @@ module MonkeyKing
         include MonkeyKing::SNS::Strategy
 
         API_URL = 'https://graph.facebook.com/v4.0/'
-        DEFAULT_FIELDS = 'id,email,name,first_name,last_name,link,location,verified,token_for_business'
+        DEFAULT_FIELDS = 'id,email,name,first_name,last_name,birthday,gender,link,location,verified,token_for_business'
         PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
         # :type => [:square, :small, :normal, :large]
@@ -151,7 +151,7 @@ module MonkeyKing
 
           # 将facebook返回的用户信息转换成统一格式
           def normalize raw_info
-            raw_info = raw_info.with_indifferent_access
+            raw_info = raw_info.to_h
             normalized = Facebook.direct_copy raw_info, [:id, :email, :name, :first_name, :last_name, :verified]
 
             # 特殊处理
