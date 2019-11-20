@@ -151,7 +151,6 @@ module MonkeyKing
 
           # 将facebook返回的用户信息转换成统一格式
           def normalize raw_info
-            raw_info = raw_info.to_h
             normalized = Facebook.direct_copy raw_info, [:id, :email, :name, :first_name, :last_name, :verified]
 
             # 特殊处理

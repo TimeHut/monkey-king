@@ -47,7 +47,7 @@ module MonkeyKing
       attr_reader :app, :code, :token, :token_secret, :expires_at, :uid
       
       def initialize credentials, uid=nil, app=:main
-        credentials = (credentials || {}).with_indifferent_access
+        credentials = credentials || {}
 
         @app   = app
         @code  = credentials[:code]
