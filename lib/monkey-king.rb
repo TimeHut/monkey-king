@@ -9,7 +9,7 @@ module MonkeyKing
   class Configuration
     include Singleton
 
-    @@defaults = {}
+    @@defaults = Foundation.conf
 
     def provider provider, app_key, app_secret, app=:main
       @@defaults[provider.to_sym] ||= {}
