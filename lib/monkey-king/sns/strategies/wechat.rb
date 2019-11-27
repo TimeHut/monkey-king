@@ -70,7 +70,7 @@ module MonkeyKing
           end
 
           def normalize raw_info
-            raw_info = raw_info.with_indifferent_access
+            raw_info = raw_info.deep_symbolize_keys
             
             {
               :id       => raw_info[:openid],

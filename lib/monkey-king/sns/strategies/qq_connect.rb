@@ -75,7 +75,7 @@ module MonkeyKing
           end
 
           def normalize raw_info
-            raw_info = raw_info.with_indifferent_access
+            raw_info = raw_info.deep_symbolize_keys
             image_key = raw_info[:figureurl_qq_2].present? ? :figureurl_qq_2 : :figureurl_1
             
             {

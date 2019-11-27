@@ -94,7 +94,7 @@ module MonkeyKing
 
           # 将weibo返回的用户信息转换成统一格式
           def normalize raw_info
-            raw_info = raw_info.with_indifferent_access
+            raw_info = raw_info.deep_symbolize_keys
             normalized = Weibo.direct_copy raw_info, [:name, :location, :description]
 
             # 特殊处理
