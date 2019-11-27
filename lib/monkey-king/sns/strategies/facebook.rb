@@ -156,7 +156,7 @@ module MonkeyKing
             normalized = Facebook.direct_copy raw_info, [:id, :email, :name, :first_name, :last_name, :verified]
 
             # 特殊处理
-            normalized[:image]    = MonkeyKing::SNS::Strategies::Facebook.picture(raw_info[:id], type: 'large') if raw_info[:id]
+            normalized[:image]    = self.class.picture(raw_info[:id], type: 'large') if raw_info[:id]
             normalized[:location] = raw_info[:location][:name] if raw_info[:location]
             normalized[:union_id] = raw_info[:token_for_business]
 
