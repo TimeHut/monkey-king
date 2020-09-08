@@ -6,6 +6,7 @@ require 'monkey-king/sns/strategies/qq_connect'
 require 'monkey-king/sns/strategies/phone'
 require 'monkey-king/sns/strategies/wechat'
 require 'monkey-king/sns/signed_request_parser'
+require 'monkey-king/sns/strategies/apple'
 
 module MonkeyKing
   module SNS

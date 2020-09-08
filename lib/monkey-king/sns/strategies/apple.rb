@@ -70,7 +70,7 @@ module MonkeyKing
           end
 
           def client_id
-            MonkeyKing.config.app_key :client_id, 'ios'
+            MonkeyKing.config.app_key :apple, @app
           end
 
       end
