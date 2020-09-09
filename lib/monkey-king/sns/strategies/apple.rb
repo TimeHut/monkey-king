@@ -11,10 +11,10 @@ module MonkeyKing
         protected
 
           # {client_id: 'com.liveyap.TimeHut', access_token: 'aaa'}
-          def real_user_info(params)
+          def real_user_info(params={})
             public_keys = get_public_keys
             if public_keys
-              payload = check_against_certs(params[:access_token], client_id, public_keys)
+              payload = check_against_certs(@token || params[:access_token], client_id, public_keys)
 
               unless payload
                 raise InvalidTokenError, 'Token not verified as issued by Apple'
