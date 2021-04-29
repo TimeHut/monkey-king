@@ -90,7 +90,7 @@ module MonkeyKing
             :name     => response[:name],
             :image    => response[:profile_image],
             :mobile   => response[:mobile],
-            :gender   => response[:gender],
+            :sex      => response[:gender],
             :id       => response[:id],
             :age      => response[:age],
             :birthday => response[:birthday]
