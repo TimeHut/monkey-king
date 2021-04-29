@@ -63,7 +63,7 @@ module MonkeyKing
 
         if @token.blank? || (self.class.need_token_secret? && @token_secret.blank?)
           if @code
-            get_access_token_from_code
+            # get_access_token_from_code
           else
             raise InvalidTokenError
           end
