@@ -48,25 +48,26 @@ module MonkeyKing
             json_body['keys']
           end
 
-          def check_against_certs(token, aud, public_keys)
-            payload = nil
-            public_keys.each do |public_key|
-              public_key = Hash[public_key.map{ |k, v| [k.to_sym, v] }]
-              puts public_key
-              jwk = JWT::JWK.import(public_key)
-              begin
-                decoded_token = JWT.decode(token, jwk.public_key , !!public_key, {
-                  algorithm: JWT_RS256,
-                  iss: APPLE_ISSUER, verify_iss: true,
-                  aud: aud, verify_aud: true
-                  }
-                )
-                return payload = decoded_token.first
-              rescue => e
+          def check_against_certs(token, aud, public_keys, index = 0)
+            public_key = public_keys[index]
+            public_key = Hash[public_key.map{ |k, v| [k.to_sym, v] }]
+            puts public_key
+            jwk = JWT::JWK.import(public_key)
+            begin
+              decoded_token = JWT.decode(token, jwk.public_key , !!public_key, {
+                algorithm: JWT_RS256,
+                iss: APPLE_ISSUER, verify_iss: true,
+                aud: aud, verify_aud: true
+                }
+              )
+              return decoded_token.first
+            rescue => e
+              if index.in?(0...public_keys.length-1)
+                check_against_certs(token, aud, public_keys, index+1)
+              else
                 raise InvalidTokenError, e.message
               end
             end
-            payload
           end
 
           def client_id
