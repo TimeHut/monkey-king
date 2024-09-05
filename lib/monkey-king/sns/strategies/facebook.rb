@@ -5,7 +5,7 @@ module MonkeyKing
       class Facebook
         include MonkeyKing::SNS::Strategy
 
-        API_URL_BASE = 'https://graph.facebook.com/v5.0'
+        API_URL_BASE = 'https://graph.facebook.com'
         DEFAULT_FIELDS = 'id,email,name,first_name,last_name,birthday,gender,link,location,verified,token_for_business'
         PUBLISH_PERMISSIONS = %w[create_note share_item publish_stream publish_actions]
 
@@ -46,7 +46,7 @@ module MonkeyKing
 
         def extend_token
           return if MonkeyKing.config.test_mode
-          
+
           params = {
             grant_type: 'fb_exchange_token',
             client_id: app_key,
