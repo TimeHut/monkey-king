@@ -143,7 +143,7 @@ module MonkeyKing
           end
 
           def handle_faraday_error e
-            if e.is_a? Faraday::Error::ClientError
+            if e.is_a? Faraday::ClientError
               raise NetworkError, e.message
             else
               raise e
