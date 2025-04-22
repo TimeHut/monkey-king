@@ -62,7 +62,7 @@ module MonkeyKing
           end
 
           def handle_faraday_error e
-            if e.is_a? Faraday::Error::ClientError
+            if e.is_a? Faraday::ClientError
               raise NetworkError, e.message
             else
               raise e
@@ -71,7 +71,7 @@ module MonkeyKing
 
           def normalize raw_info
             raw_info = raw_info.deep_symbolize_keys
-            
+
             {
               :id       => raw_info[:openid],
               :union_id => raw_info[:unionid],

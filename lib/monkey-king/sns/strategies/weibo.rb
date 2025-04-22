@@ -59,7 +59,7 @@ module MonkeyKing
           end
 
           def handle_oauth_error e
-            if e.is_a? Faraday::Error::ClientError
+            if e.is_a? Faraday::ClientError
               raise NetworkError, e.message
             elsif e.is_a?(OAuth2::Error) && e.response.parsed.is_a?(Hash)
               code = e.response.parsed['error_code']
